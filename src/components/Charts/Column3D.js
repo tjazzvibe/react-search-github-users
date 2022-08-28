@@ -1,0 +1,44 @@
+// STEP 1 - Include Dependencies
+// Include react
+import React from 'react';
+
+// Include the react-fusioncharts component
+import ReactFC from 'react-fusioncharts';
+
+// Include the fusioncharts library
+import Chart from 'fusioncharts';
+
+// Include the chart type
+import Column2D from 'fusioncharts/fusioncharts.charts';
+
+// Include the theme as fusion
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+
+// Adding the chart and theme as dependency to the core fusioncharts
+ReactFC.fcRoot(Chart, Column2D, FusionTheme);
+
+const ChartComponent = ({ data }) => {
+  // STEP 3 - Creating the JSON object to store the chart configurations
+  const chartConfigs = {
+    type: 'column3d', // The chart type
+    width: '100%', // Width of the chart
+    height: '400', // Height of the chart
+    dataFormat: 'json', // Data type
+    dataSource: {
+      // Chart Configuration
+      chart: {
+        caption: 'Most Popular Language',
+        yAsixName: 'Stars',
+        xAsixName: 'Repos',
+        xAxisFontSize: '16',
+        yAxisFontSize: '16',
+      },
+      // Chart Data is an array i think of objects
+      // with a label and value
+      data,
+    },
+  };
+  return <ReactFC {...chartConfigs} />;
+};
+
+export default ChartComponent;
